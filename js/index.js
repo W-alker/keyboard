@@ -16,10 +16,6 @@ function Fluxay() {
 }
 
 // 键盘事件
-window.addEventListener('keyup', (e) => {
-  const ev = e || window.event
-  ev.preventDefault()
-})
 window.addEventListener('keydown', (ev) => {
   console.log(ev.keyCode)
   // 阻止默认事件，对组合键无效
@@ -30,7 +26,7 @@ window.addEventListener('keydown', (ev) => {
   if (ev.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
     key = document.querySelectorAll(`[data-keycode="${ev.keyCode}"]`)[1]
   } else key = document.querySelector(`[data-keycode="${ev.keyCode}"]`)
-  
+
   // console.log(document.querySelector(`[data-keycode="${ev.keyCode}"]`));
   key.style.boxShadow = `0px 0px 3px 4px ${colors[parseInt(Math.random() * 7)]}`
   let timer = setTimeout(() => {
