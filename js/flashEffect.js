@@ -4,13 +4,16 @@ const colors = ['rgb(72, 105, 255)', 'rgb(0, 255, 242)', 'rgb(255, 208, 0)', 'rg
   普通点击效果
   @param1: 当前点击触发的按键
   @param2: 灯光颜色，默认随机
+  @param3: 延时，默认300ms
+  @param4: 是否开启留存效果，默认不开启
  */
-const clickLight = (key, color = colors[parseInt(Math.random() * 7)]) => {
+const clickLight = (key, color = colors[parseInt(Math.random() * 7)], delay = 300, remain = false) => {
   key.style.boxShadow = `0px 0px 3px 4px ${color}`
+  if(remain) return 
   let timer = setTimeout(() => {
     key.style.boxShadow = 'none'
     timer = null
-  }, 300)
+  }, delay)
 }
 
 /* 
