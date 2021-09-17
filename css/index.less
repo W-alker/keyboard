@@ -1,31 +1,45 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #333;
+  background-color: #333;
+}
+.text-box {
+
+  width: 900px;
+  height: 80px;
+  margin: 100px auto;
+  textarea {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    padding: 15px;
+  }
+}
+.hint {
+  text-align: center;
 }
 
 .keyboard {
-    width: 940px;
-    height: 300px;
-    margin: 100px auto;
-    background-color: rgb(40, 40, 40);
+  width: 940px;
+  height: 300px;
+  margin: 100px auto;
+  background-color: rgb(40, 40, 40);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  border-radius: 6px;
+
+  .row {
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
-    padding: 10px;
-}
+  }
 
-.keyboard .row {
-    display: flex;
-    justify-content: space-around;
-}
-
-span {
-
+  span {
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -38,45 +52,45 @@ span {
     line-height: 50px;
     font-size: 18px;
     cursor: pointer;
-    transition: all ease .3s;
+    transition: all ease 0.3s;
     /*3D*/
     /* transform: translate3D(0,0,100px); */
+  }
 
-}
-
-span:hover {
+  span:hover {
     box-shadow: 0px 0px 3px 4px rgb(255, 41, 41) !important;
     /* 权重提最高，防止因为后续修改该值优先级不够导致无法显示hover效果 */
-}
+  }
 
-.keyboard .backspace {
+  .Backspace {
     width: 150px;
-}
+  }
 
-.keyboard .sm {
+  .sm {
     font-size: 14px;
-}
+  }
 
-.tab {
+  .Tab {
     width: 80px;
-}
+  }
 
-.symbol {
+  .symbol {
     width: 100px;
-}
+  }
 
-.caps {
+  .caps {
     width: 110px;
-}
+  }
 
-.shift {
+  .Shift {
     width: 130px;
-}
+  }
 
-.enter {
+  .Enter {
     width: 140px;
-}
+  }
 
-.block {
+  .block {
     width: 380px;
+  }
 }
