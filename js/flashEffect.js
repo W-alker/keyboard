@@ -22,11 +22,15 @@ const clickLight = (
   delay = 300,
   remain = false
 ) => {
+  key.style.color = color
   key.style.boxShadow = `0px 0px 4px 6px ${color}`
+
   if (remain) return
   let timer = setTimeout(() => {
-    key.style.boxShadow = 'none'
-    // timer = null
+    key.style.boxShadow = '4px 4px 8px #2b2b2b,-4px -4px 8px #3b3b3b'
+    key.style.color='whitesmoke'
+    clearTimeout(timer)
+    timer = null
   }, delay)
 }
 

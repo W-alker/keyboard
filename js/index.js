@@ -24,7 +24,6 @@ function getKey(ev) {
     )
 }
 function clearAllLight() {
-
   let nodes = document.querySelectorAll('span')
   for (let item of nodes) item.style.boxShadow = 'none'
 }
