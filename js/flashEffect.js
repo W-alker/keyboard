@@ -1,4 +1,13 @@
-const colors = ['rgb(72, 105, 255)', 'rgb(0, 255, 242)', 'rgb(255, 208, 0)', 'rgb(9, 255, 0)', 'rgb(255, 81, 0)', 'rgb(30, 255, 0)', 'rgb(255, 153, 0)', 'rgb(50,255,100)']
+const colors = [
+  'rgb(72, 105, 255)',
+  'rgb(0, 255, 242)',
+  'rgb(255, 208, 0)',
+  'rgb(9, 255, 0)',
+  'rgb(255, 81, 0)',
+  'rgb(30, 255, 0)',
+  'rgb(255, 153, 0)',
+  'rgb(50,255,100)'
+]
 
 /* 
   普通点击效果
@@ -7,12 +16,17 @@ const colors = ['rgb(72, 105, 255)', 'rgb(0, 255, 242)', 'rgb(255, 208, 0)', 'rg
   @param3: 延时，默认300ms
   @param4: 是否开启留存效果，默认不开启
  */
-const clickLight = (key, color = colors[parseInt(Math.random() * 7)], delay = 300, remain = false) => {
-  key.style.boxShadow = `0px 0px 3px 4px ${color}`
-  if(remain) return 
+const clickLight = (
+  key,
+  color = colors[parseInt(Math.random() * 7)],
+  delay = 300,
+  remain = false
+) => {
+  key.style.boxShadow = `0px 0px 4px 6px ${color}`
+  if (remain) return
   let timer = setTimeout(() => {
     key.style.boxShadow = 'none'
-    timer = null
+    // timer = null
   }, delay)
 }
 
