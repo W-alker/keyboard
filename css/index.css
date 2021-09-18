@@ -9,7 +9,7 @@ body {
 .text-box {
   width: 900px;
   height: 80px;
-  margin: 100px auto;
+  margin: 50px auto;
 }
 .text-box textarea {
   width: 100%;
@@ -20,10 +20,14 @@ body {
 .hint {
   text-align: center;
 }
+.hint a {
+  font-size: 18px;
+  color: #999;
+}
 .keyboard {
   width: 940px;
   height: 300px;
-  margin: 100px auto;
+  margin: 50px auto;
   background-color: #282828;
   display: flex;
   flex-direction: column;
