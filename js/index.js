@@ -1,14 +1,14 @@
-import { colors, Fluxay, clickLight } from './flashEffect.js'
+import { colors, Fluxay, clickLight, openLight, closeLight, clearAllLight } from './flashEffect.js'
 
 let colorNum = 0 // 灯光颜色
 let remain = false // 是否留存
-let openclickLight = false
+let openclickLight = false // 是否开启灯光
 
 // 按压效果
 function pressEffect(key, isUp = false) {
   key.style.boxShadow = isUp
-    ? '4px 4px 8px #2b2b2b, -4px -4px 8px #3b3b3b'
-    : 'inset 4px 4px 8px #2b2b2b, inset -4px -4px 8px #3b3b3b'
+    ? '4px 4px 6px #2b2b2b, -4px -4px 6px #3b3b3b'
+    : 'inset 4px 4px 6px #2b2b2b, inset -4px -4px 6px #3b3b3b'
 }
 
 function getKey(ev) {
@@ -20,25 +20,20 @@ function getKey(ev) {
       document.querySelector(`[data-keyCode="${ev.keyCode}"]`) ||
       document.querySelector(`[data-key="${ev.key}"]`) ||
       document.querySelector(`[data-key2="${ev.key}"]`) ||
-      document.querySelector(`[data-key3="${ev.key}"]`) 
+      document.querySelector(`[data-key3="${ev.key}"]`)
     )
-}
-function clearAllLight() {
-  let nodes = document.querySelectorAll('span')
-  for (let item of nodes) item.style.boxShadow = 'none'
 }
 
 // 键盘事件
 window.addEventListener('keydown', (ev) => {
   console.log(ev.key, ev.keyCode, ev.location, KeyboardEvent.DOM_KEY_LOCATION_RIGHT)
   // 阻止默认事件，对组合键无效
-  // ev.preventDefault()
+  ev.preventDefault()
 
   // 初始化对应键位
   let key = getKey(ev)
-  console.log(remain);
 
-  // 闪烁颜色切换
+  // 闪烁颜色切换，顺序轮流切换
   if (ev.keyCode === 32 && ev.ctrlKey) {
     if (colorNum === colors.length - 1) colorNum = 0
     else colorNum++
@@ -49,20 +44,17 @@ window.addEventListener('keydown', (ev) => {
   else pressEffect(key)
 
   // 开启/关闭灯光，组合键ctrl+上箭头
-  if (
-    (ev.key == 'ArrowUp' || ev.keyCode == 38) &&
-    ev.ctrlKey
-    //&& (ev.key == '' || ev.keyCode == 32)
-  ) {
+  if ((ev.key == 'ArrowUp' || ev.keyCode == 38) && ev.ctrlKey) {
     ev.preventDefault()
+    clearAllLight()
     openclickLight = !openclickLight
   }
 
   // 流光效果，组合键ctrl+左箭头
-  if (ev.ctrlKey && ev.key === 'ArrowLeft') {
+  if (openclickLight && ev.ctrlKey && ev.key === 'ArrowLeft') {
     ev.preventDefault()
     clearAllLight()
-    Fluxay(document.querySelectorAll('span'), 50, 100)
+    Fluxay(document.querySelectorAll('span'), colors[colorNum], 100, 200)
   }
 
   // 留存效果，组合键ctrl+右箭头
@@ -73,8 +65,9 @@ window.addEventListener('keydown', (ev) => {
     if (!remain) clearAllLight()
   }
 })
+
 window.addEventListener('keyup', (ev) => {
   let key = getKey(ev)
   // 按压效果解除
-  if(!openclickLight) pressEffect(key, true)
+  if (!openclickLight) pressEffect(key, true)
 })
